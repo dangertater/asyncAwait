@@ -15,17 +15,17 @@ let getPosts = () => {
 	}, 1000)
 }
 
-let createPost = (post) => {
+//we removed the call on getPosts(), and instead are plugging it into the second
+//----argument for createPost(x,y). we use callback immediately after posts.push(post)
+//----executes in order to prevent 'post 3' being created after 'getPosts()' is called
+let createPost = (post, cb) => {
 	setTimeout(() => {
 		posts.push(post)
-		//depending on the milisecond number on below line, the createPost function
-		//----is being executed after getPosts function despite createPost()
-		//----being called before getPosts()
+		cb()
 	}, 2000)
 }
 
-createPost({ title: "Post three", body: "This is post three" })
-getPosts()
+createPost({ title: "Post three", body: "This is post three" }, getPosts)
 
 // let createPost = (post, callback) => {
 //     return new Promise((resolve,reject) => {
@@ -41,8 +41,12 @@ getPosts()
 // 	.then(getPosts)
 // 	.catch((err) => console.log(err))
 
-// if (typeof window !== "undefined") {
-// 	console.log("you are on the browser")
-// } else {
-// 	console.log("you are on the server")
+//pre fixing with callback
+// let createPost = (post) => {
+// 	setTimeout(() => {
+// 		posts.push(post)
+// 		//depending on the milisecond number on below line, the createPost function
+// 		//----is being executed after getPosts function despite createPost()
+// 		//----being called before getPosts()
+// 	}, 2000)
 // }
