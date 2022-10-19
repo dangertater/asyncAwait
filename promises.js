@@ -1,3 +1,4 @@
+//https://www.youtube.com/watch?v=PoRJizFvM7s
 let posts = [
 	{ title: "Post one", body: "This is post one" },
 	{ title: "Post two", body: "This is post two" },
@@ -39,12 +40,26 @@ let createPost = (post) => {
 //the function must be labeled 'async' as shown below inorder to use 'await'
 //----await waits for async function/process to complete
 //----this code will wait until 'createPost' is finished before calling 'getPosts'
-async function init() {
-	await createPost({ title: "Post three", body: "This is post three" })
-	getPosts()
-}
+//----vsc says await before createPost on line 44 has no effect, but on webpage is difference between post two being final post and post three being posted
+//----am I using async/await incorrectly?
+// async function init() {
+// 	await createPost({ title: "Post three", body: "This is post three" })
+// 	getPosts()
+// }
 
-init()
+// init()
+
+//Async/Await/Fetch
+//----the goal is functionally the same as using promises, but 'makes it look nicer'
+//----the 'fetch' will return a promise
+async function fetchUsers() {
+	let res = await fetch("https://jsonplaceholder.typicode.com/posts")
+	//because we need to call a res.json, we make the below variable
+	let data = await res.json()
+
+	console.log(data)
+}
+fetchUsers()
 //promise.all is used to avoid having to do .then multiple times
 //----if
 // let promise1 = Promise.resolve("Hello World")
