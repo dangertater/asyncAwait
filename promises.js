@@ -25,7 +25,7 @@ let createPost = (post) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			posts.push(post)
-			let error = false
+			let error = true
 			if (!error) {
 				resolve()
 			} else {
@@ -35,4 +35,9 @@ let createPost = (post) => {
 	})
 }
 
-createPost({ title: "Post three", body: "This is post three" }).then(getPosts)
+//above we changed 'error = false' to 'error = true'
+//----then we added .catch which prevents an 'uncaught error'
+//----with .catch implemented it produces
+createPost({ title: "Post three", body: "This is post three" })
+	.then(getPosts)
+	.catch((err) => console.log(err))
