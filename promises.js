@@ -25,7 +25,7 @@ let createPost = (post) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			posts.push(post)
-			let error = true
+			let error = false
 			if (!error) {
 				resolve()
 			} else {
@@ -35,25 +35,35 @@ let createPost = (post) => {
 	})
 }
 
+//Async / Await
+//the function must be labeled 'async' as shown below inorder to use 'await'
+//----await waits for async function/process to complete
+//----this code will wait until 'createPost' is finished before calling 'getPosts'
+async function init() {
+	await createPost({ title: "Post three", body: "This is post three" })
+	getPosts()
+}
+
+init()
 //promise.all is used to avoid having to do .then multiple times
 //----if
-let promise1 = Promise.resolve("Hello World")
-let promise2 = 10
-let promise3 = new Promise((resolve, reject) =>
-	setTimeout(resolve, 2000, "Goodbye")
-)
-//fetch gets data from a website and return as an object
-//----if you don't use the '.then((res) => res.json()', you will get a bunch
-//----we use json because the server provided 'valid json', could use 'res.otherstuff' etc, but probs always use res.json
-let promise4 = fetch("https://jsonplaceholder.typicode.com/posts").then(
-	(res) => {
-		return res.json()
-	}
-)
+// let promise1 = Promise.resolve("Hello World")
+// let promise2 = 10
+// let promise3 = new Promise((resolve, reject) =>
+// 	setTimeout(resolve, 2000, "Goodbye")
+// )
+// //fetch gets data from a website and return as an object
+// //----if you don't use the '.then((res) => res.json()', you will get a bunch
+// //----we use json because the server provided 'valid json', could use 'res.otherstuff' etc, but probs always use res.json
+// let promise4 = fetch("https://jsonplaceholder.typicode.com/posts").then(
+// 	(res) => {
+// 		return res.json()
+// 	}
+// )
 
-Promise.all([promise1, promise2, promise3, promise4]).then((values) =>
-	console.log(values)
-)
+// Promise.all([promise1, promise2, promise3, promise4]).then((values) =>
+// 	console.log(values)
+// )
 
 //above we changed 'error = false' to 'error = true'
 //----then we added .catch which prevents an 'uncaught error'
