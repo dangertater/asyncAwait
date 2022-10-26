@@ -16,25 +16,38 @@ let getPosts = () => {
 	}, 1000)
 }
 
+let createPost = (post) => {
+	return new Promise((resolve, reject) => {
+		posts.push(post)
+		let error = false
+		if (!error) {
+			resolve()
+		} else {
+			reject("Error: Something went wrong")
+		}
+	})
+}
 //removing the cb, both second argument form createPost()
 //----and the calling of cb
 //----promise functions call resolve when runs succsuesful,
 //----call reject when something goes wrong
 //----generally some sort of error checking will occur after reject, not in this example
 //----promises allow us to use the '.then()' syntax
-let createPost = (post) => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			posts.push(post)
-			let error = false
-			if (!error) {
-				resolve()
-			} else {
-				reject("Error: Something went wrong")
-			}
-		}, 2000)
-	})
-}
+
+//below is the function written from video, deleted setTimeout for learning
+// let createPost = (post) => {
+// 	return new Promise((resolve, reject) => {
+// 		setTimeout(() => {
+// 			posts.push(post)
+// 			let error = false
+// 			if (!error) {
+// 				resolve()
+// 			} else {
+// 				reject("Error: Something went wrong")
+// 			}
+// 		}, 2000)
+// 	})
+// }
 
 //Async / Await
 //the function must be labeled 'async' as shown below inorder to use 'await'

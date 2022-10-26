@@ -27,15 +27,13 @@ let createPost = (post, cb) => {
 
 createPost({ title: "Post three", body: "This is post three" }, getPosts)
 
-// let createPost = (post, callback) => {
-//     return new Promise((resolve,reject) => {
-//         setTimeout(())
-//     })
-// 	setTimeout(() => {
-// 		posts.push(post)
-// 		callback()
-// 	}, 2000)
-// }
+let createPost2 = (post, callback) => {
+    return new Promise((resolve,reject) => {
+	setTimeout(() => {
+		posts.push(post)
+		callback()
+	}, 2000)
+}
 
 // createPost({ title: "Post Three", body: "this is post three" }, getPosts)
 // 	.then(getPosts)
@@ -50,3 +48,4 @@ createPost({ title: "Post three", body: "This is post three" }, getPosts)
 // 		//----being called before getPosts()
 // 	}, 2000)
 // }
+//asdf
